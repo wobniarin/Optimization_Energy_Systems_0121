@@ -1,0 +1,27 @@
+set G := G1 G2;
+set D := D1 D2;
+set N := 0 1 2;
+set L := L1 L2 L3;
+
+param: Pgmax :=
+G1  100
+G2  80;
+
+param: Pdmax :=
+D1   100
+D2   50;
+
+param: costs_g :=
+G1 12
+G2 20;
+
+param: costs_d :=
+D1 40
+D2 35;
+
+param lines:
+    0   1   2 :=
+0   0   1   1
+1   1   0   1
+2   1   1   0;
+

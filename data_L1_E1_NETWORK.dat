@@ -1,0 +1,43 @@
+set G := G1 G2;
+set D := D1 D2;
+set N := 0 1 2;
+set L := L00 L01 L02 L10 L11 L12 L20 L21 L22;
+
+param: Pgmax :=
+G1  100
+G2  80;
+
+param: Pdmax :=
+D1   100
+D2   50;
+
+param: costs_g :=
+G1 12
+G2 20;
+
+param: costs_d :=
+D1 40
+D2 35;
+
+param Fmaxnn:
+    0     1     2 :=
+0   0     100   40
+1   100   0     100
+2   40   100   0;
+
+param Bnn:
+    0     1     2 :=
+0   0     500   500
+1   500   0     500
+2   500   500   0;
+
+
+param location_generators:
+    0     1     2 :=
+G1  1     0     0
+G2  0     1     0;
+
+param location_demands:
+    0     1     2 :=
+D1  0     1     0
+D2  0     0     1;

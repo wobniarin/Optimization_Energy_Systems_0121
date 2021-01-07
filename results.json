@@ -1,0 +1,55 @@
+{
+    "Problem": [
+        {
+            "Lower bound": 5750.0,
+            "Name": "x5",
+            "Number of binary variables": 0,
+            "Number of constraints": 5,
+            "Number of continuous variables": 5,
+            "Number of integer variables": 0,
+            "Number of nonzeros": 5,
+            "Number of objectives": 1,
+            "Number of variables": 5,
+            "Sense": "maximize",
+            "Upper bound": 5750.0
+        }
+    ],
+    "Solution": [
+        {
+            "number of solutions": 1,
+            "number of solutions displayed": 1
+        },
+        {
+            "Constraint": "No values",
+            "Gap": 0.0,
+            "Message": "Model was solved to optimality (subject to tolerances), and an optimal solution is available.",
+            "Objective": {
+                "social_welfare": {
+                    "Value": 5750.0
+                }
+            },
+            "Problem": {},
+            "Status": "optimal",
+            "Variable": {
+                "pd[D1]": {
+                    "Value": 100.0
+                },
+                "pd[D2]": {
+                    "Value": 50.0
+                }
+            }
+        }
+    ],
+    "Solver": [
+        {
+            "Error rc": 0,
+            "Message": "Model was solved to optimality (subject to tolerances), and an optimal solution is available.",
+            "Return code": "0",
+            "Status": "ok",
+            "Termination condition": "optimal",
+            "Termination message": "Model was solved to optimality (subject to tolerances), and an optimal solution is available.",
+            "Time": 0.09418296813964844,
+            "Wall time": "0.00106048583984375"
+        }
+    ]
+}

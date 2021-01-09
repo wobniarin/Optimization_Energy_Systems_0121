@@ -67,7 +67,7 @@ def nodalPowerBalancen(model, n):
     gen_node_n = sum(model.pg[g] * model.location_generators[g,n] for g in model.G)
     dem_node_n = sum(model.pd[d] * model.location_demands[d,n] for d in model.D)
     powerflow_n = sum(model.Bnn[n,m] * (model.thetan[n] - model.thetan[m]) for m in model.N)
-    return gen_node_n + powerflow_n - dem_node_n == 0
+    return dem_node_n + powerflow_n - gen_node_n == 0
 model.nodalPFB = Constraint(model.N, rule=nodalPowerBalancen)
 
 # choose the solver
@@ -78,5 +78,22 @@ opt = pyo.SolverFactory('gurobi')
 
 # Create a model instance and optimize
 instance = model.create_instance('data_L1_E1_NETWORK.dat')
+
+# Create a "dual" suffic component on the instance
+# so the solver plugin will know which suffixes to collect
+instance.dual = pyo.Suffix(direction=pyo.Suffix.IMPORT)
+
+# Solve the optimization problem
 results = opt.solve(instance)
+# Display results of the code.
 instance.display()
+
+# Display all dual variables
+print("Duals")
+for c in instance.component_objects(pyo.Constraint, active = True):
+    print("    Constraint, c")
+    for index in c:
+        print("      ", index, instance.dual[c[index]])
+
+
+

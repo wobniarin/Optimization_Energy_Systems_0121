@@ -20,8 +20,8 @@ model.L = Set() # Lines in the network
 model.T = Set() # Time periods
 
 # Defining Parameters
-model.Pgmax = Param(model.G)
-model.Pdmax = Param(model.D)
+model.Pgmax = Param(model.G, model.T)
+model.Pdmax = Param(model.D, model.T)
 model.costs_g = Param(model.G)
 model.costs_d = Param(model.D)
 model.Fmaxnn = Param(model.N, model.N, mutable=True)
@@ -43,12 +43,12 @@ model.social_welfare = Objective(rule=SW, sense=maximize)
 # Defining constraints
 # C1 demand  max constraint
 def pd_MAX_limit(model,d, t):
-    return model.pd[d,t] <= model.Pdmax[d]
+    return model.pd[d,t] <= model.Pdmax[d,t]
 model.pd_max_limit = Constraint(model.D,model.T, rule=pd_MAX_limit)
 
 # C2 generators max constraint
 def pg_MAX_limit(model,g, t):
-    return model.pg[g,t] <= model.Pgmax[g]
+    return model.pg[g,t] <= model.Pgmax[g,t]
 model.pgmax_limit = Constraint(model.G, model.T, rule=pg_MAX_limit)
 
 # C4 Power flow Upper bound
@@ -77,7 +77,7 @@ opt = pyo.SolverFactory('gurobi')
 ## pyomo solve --solver=glpk Transport_problem_example_pyomo.py datos.dat
 
 # Create a model instance and optimize
-instance = model.create_instance('data_L1_E1_NETWORK_24.dat')
+instance = model.create_instance('data_L1_E1_NETWORK_24_6BUS.dat')
 
 # Create a "dual" suffic component on the instance
 # so the solver plugin will know which suffixes to collect

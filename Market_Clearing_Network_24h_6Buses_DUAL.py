@@ -1,6 +1,6 @@
-# Optimization Course - 24h Market Clearing with network Primal - IEEE 6 Bus network
+# Optimization Course - 24h Market Clearing with network DUAL - IEEE 6 Bus network
 # Author: Íngrid Munné-Collado
-# Date: 09/01/2021
+# Date: 11/01/2021
 
 # Requirements: Install pyomo, glpk and gurobi. You should apply for an academic license in gurobi
 from pyomo.environ import *
